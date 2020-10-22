@@ -170,6 +170,8 @@ public class MainActivity extends AppCompatActivity {
             View view2 = getLayoutInflater().inflate(R.layout.dontetlen, (ViewGroup) findViewById(R.id.toast));
             dontetlen_toast.setView(view2);
 
+
+
         }
     }
 }
