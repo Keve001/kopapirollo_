@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView dontetlen;
     private int valasztas,dontetlenPont,maxJatekosHp,maxGepHp,rand;
     private Button koButton, olloButton, papirButton;
-    private Toast nyert_toast,vesztett_toast,dontetlen_toast;
+    private Toast nyert_toast,vesztett_toast;
     private AlertDialog alertDialog;
     private AlertDialog.Builder builder;
 
@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
-
         koButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -39,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
                 sajatValasztas.setImageResource(R.drawable.rock);
                 jatek();
                 gepValasztasa();
+
             }
         });
         papirButton.setOnClickListener(new View.OnClickListener() {
@@ -76,14 +76,18 @@ public class MainActivity extends AppCompatActivity {
             case 3:
                 jatekos_hp3.setImageResource(R.drawable.heart1);
                 maxJatekosHp--;
+                nyert_toast.show();
                 break;
             case 2:
                 jatekos_hp2.setImageResource(R.drawable.heart1);
                 maxJatekosHp--;
+                nyert_toast.show();
                 break;
             case 1:
                 jatekos_hp1.setImageResource(R.drawable.heart1);
                 maxJatekosHp--;
+                alertDialog.show();
+                nyert_toast.show();
                 break;
             default:
                 break;
@@ -95,14 +99,18 @@ public class MainActivity extends AppCompatActivity {
                 case 3:
                     gep_hp3.setImageResource(R.drawable.heart1);
                     maxGepHp--;
+                    vesztett_toast.show();
                     break;
                 case 2:
                     gep_hp2.setImageResource(R.drawable.heart1);
                     maxGepHp--;
+                    vesztett_toast.show();
                     break;
                 case 1:
                     gep_hp1.setImageResource(R.drawable.heart1);
                     maxGepHp--;
+                    vesztett_toast.show();
+                    alertDialog.show();
                     break;
                 default:
                     break;
@@ -166,10 +174,7 @@ public class MainActivity extends AppCompatActivity {
             View view1 = getLayoutInflater().inflate(R.layout.vesztett, (ViewGroup) findViewById(R.id.toast));
             vesztett_toast.setView(view1);
 
-            dontetlen_toast = Toast.makeText(MainActivity.this, "", Toast.LENGTH_LONG);
-            dontetlen_toast.setGravity(Gravity.CENTER, 0, 0);
-            View view2 = getLayoutInflater().inflate(R.layout.dontetlen, (ViewGroup) findViewById(R.id.toast));
-            dontetlen_toast.setView(view2);
+
 
             builder = new AlertDialog.Builder(MainActivity.this);
             builder.setMessage("Akarsz mé egyet játszani?");
@@ -193,7 +198,7 @@ public class MainActivity extends AppCompatActivity {
             builder.setNegativeButton("Nem", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    finish();
+                   finish();
                     dialog.cancel();
                 }
             });
