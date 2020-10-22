@@ -35,9 +35,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 valasztas = 1;
                 sajatValasztas.setImageResource(R.drawable.rock);
-
-
-
+                jatek();
+                gepValasztasa();
             }
         });
         papirButton.setOnClickListener(new View.OnClickListener() {
@@ -45,7 +44,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 valasztas = 2;
                 sajatValasztas.setImageResource(R.drawable.paper);
-
+                jatek();
+                gepValasztasa();
             }
         });
 
@@ -54,7 +54,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 valasztas = 3;
                 sajatValasztas.setImageResource(R.drawable.scissors);
-
+                jatek();
+                gepValasztasa();
             }
         });
     }
@@ -151,6 +152,8 @@ public class MainActivity extends AppCompatActivity {
             gep_hp1 = findViewById(R.id.gep_hp1);
             gep_hp2 = findViewById(R.id.gep_hp2);
             gep_hp3 = findViewById(R.id.gep_hp3);
+
+
         }
     }
 }
