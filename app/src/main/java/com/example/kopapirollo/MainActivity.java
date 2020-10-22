@@ -23,7 +23,8 @@ public class MainActivity extends AppCompatActivity {
     private int valasztas,dontetlenPont,maxJatekosHp,maxGepHp,rand;
     private Button koButton, olloButton, papirButton;
     private Toast nyert_toast,vesztett_toast,dontetlen_toast;
-
+    private AlertDialog alertDialog;
+    private AlertDialog.Builder builder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -170,10 +171,40 @@ public class MainActivity extends AppCompatActivity {
             View view2 = getLayoutInflater().inflate(R.layout.dontetlen, (ViewGroup) findViewById(R.id.toast));
             dontetlen_toast.setView(view2);
 
+            builder = new AlertDialog.Builder(MainActivity.this);
+            builder.setMessage("Akarsz mé egyet játszani?");
+            builder.setPositiveButton("Igen", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dontetlenPont = 0;
+                    maxGepHp = 3;
+                    maxJatekosHp = 3;
+                    valasztas = 0;
+                    gep_hp3.setImageResource(R.drawable.heart2);
+                    gep_hp2.setImageResource(R.drawable.heart2);
+                    gep_hp1.setImageResource(R.drawable.heart2);
+                    jatekos_hp3.setImageResource(R.drawable.heart2);
+                    jatekos_hp2.setImageResource(R.drawable.heart2);
+                    jatekos_hp1.setImageResource(R.drawable.heart2);
+                    dontetlen.setText("döntetlenek:" + dontetlenPont);
+
+                }
+            });
+            builder.setNegativeButton("Nem", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    finish();
+                    dialog.cancel();
+                }
+            });
+            builder.setTitle("Jaték végetért");
+            builder.setCancelable(false);
+            alertDialog = builder.create();
 
 
         }
     }
-}
+
+
 
 
