@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView dontetlen;
     private int valasztas,dontetlenPont,maxJatekosHp,maxGepHp,rand;
     private Button koButton, olloButton, papirButton;
+    private Toast nyert_toast,vesztett_toast,dontetlen_toast;
 
 
     @Override
@@ -153,6 +154,21 @@ public class MainActivity extends AppCompatActivity {
             gep_hp2 = findViewById(R.id.gep_hp2);
             gep_hp3 = findViewById(R.id.gep_hp3);
 
+            nyert_toast = Toast.makeText(MainActivity.this, "", Toast.LENGTH_LONG);
+            nyert_toast.setGravity(Gravity.CENTER, 0, 0);
+            View view = getLayoutInflater().inflate(R.layout.nyert, (ViewGroup) findViewById(R.id.toast));
+            nyert_toast.setView(view);
+
+
+            vesztett_toast = Toast.makeText(MainActivity.this, "", Toast.LENGTH_LONG);
+            vesztett_toast.setGravity(Gravity.CENTER, 0, 0);
+            View view1 = getLayoutInflater().inflate(R.layout.vesztett, (ViewGroup) findViewById(R.id.toast));
+            vesztett_toast.setView(view1);
+
+            dontetlen_toast = Toast.makeText(MainActivity.this, "", Toast.LENGTH_LONG);
+            dontetlen_toast.setGravity(Gravity.CENTER, 0, 0);
+            View view2 = getLayoutInflater().inflate(R.layout.dontetlen, (ViewGroup) findViewById(R.id.toast));
+            dontetlen_toast.setView(view2);
 
         }
     }
