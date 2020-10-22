@@ -76,18 +76,18 @@ public class MainActivity extends AppCompatActivity {
             case 3:
                 jatekos_hp3.setImageResource(R.drawable.heart1);
                 maxJatekosHp--;
-                nyert_toast.show();
+                vesztett_toast.show();
                 break;
             case 2:
                 jatekos_hp2.setImageResource(R.drawable.heart1);
                 maxJatekosHp--;
-                nyert_toast.show();
+                vesztett_toast.show();
                 break;
             case 1:
                 jatekos_hp1.setImageResource(R.drawable.heart1);
                 maxJatekosHp--;
                 alertDialog.show();
-                nyert_toast.show();
+                vesztett_toast.show();
                 break;
             default:
                 break;
@@ -99,17 +99,17 @@ public class MainActivity extends AppCompatActivity {
                 case 3:
                     gep_hp3.setImageResource(R.drawable.heart1);
                     maxGepHp--;
-                    vesztett_toast.show();
+                    nyert_toast.show();
                     break;
                 case 2:
                     gep_hp2.setImageResource(R.drawable.heart1);
                     maxGepHp--;
-                    vesztett_toast.show();
+                    nyert_toast.show();
                     break;
                 case 1:
                     gep_hp1.setImageResource(R.drawable.heart1);
                     maxGepHp--;
-                    vesztett_toast.show();
+                    nyert_toast.show();
                     alertDialog.show();
                     break;
                 default:
