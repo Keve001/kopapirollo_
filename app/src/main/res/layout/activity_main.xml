@@ -62,6 +62,4 @@
             android:id="@+id/jatekos_hp3"/>
 
     </LinearLayout>
-
-  
-</LinearLayout >
+</LinearLayout>
