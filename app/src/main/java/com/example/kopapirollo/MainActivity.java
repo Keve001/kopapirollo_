@@ -17,7 +17,7 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     private ImageView sajatValasztas, gepValasztas, gep_hp1, gep_hp2, gep_hp3, jatekos_hp1, jatekos_hp2, jatekos_hp3;
-    private Button buttonKo, buttonOllo, buttonPapir;
+
     private Random random;
     private TextView dontetlen;
     private int valasztas,dontetlenPont,maxJatekosHp,maxGepHp,rand;
@@ -36,8 +36,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 valasztas = 1;
                 sajatValasztas.setImageResource(R.drawable.rock);
-                jatek();
                 gepValasztasa();
+                jatek();
+
 
             }
         });
@@ -46,8 +47,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 valasztas = 2;
                 sajatValasztas.setImageResource(R.drawable.paper);
-                jatek();
                 gepValasztasa();
+                jatek();
+
             }
         });
 
@@ -56,44 +58,69 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 valasztas = 3;
                 sajatValasztas.setImageResource(R.drawable.scissors);
-                jatek();
                 gepValasztasa();
+                jatek();
             }
         });
     }
-    private void gepValasztasa() {
-        rand = random.nextInt(3) + 1;
-        if (rand == 1) {
-            gepValasztas.setImageResource(R.drawable.rock);
-        } else if (rand == 2) {
-            gepValasztas.setImageResource(R.drawable.paper);
-        } else if (rand == 3) {
-            gepValasztas.setImageResource(R.drawable.scissors);
+        private void gepValasztasa() {
+            rand = random.nextInt(4);
+            if (rand == 1) {
+                gepValasztas.setImageResource(R.drawable.rock);
+            } else if (rand == 2) {
+                gepValasztas.setImageResource(R.drawable.paper);
+            } else if (rand == 3) {
+                gepValasztas.setImageResource(R.drawable.scissors);
+            }
         }
-    }
-    private void jatekosEletvesztes() {
-        switch (maxJatekosHp) {
-            case 3:
-                jatekos_hp3.setImageResource(R.drawable.heart1);
-                maxJatekosHp--;
-                vesztett_toast.show();
-                break;
-            case 2:
-                jatekos_hp2.setImageResource(R.drawable.heart1);
-                maxJatekosHp--;
-                vesztett_toast.show();
-                break;
-            case 1:
-                jatekos_hp1.setImageResource(R.drawable.heart1);
-                maxJatekosHp--;
-                alertDialog.show();
-                vesztett_toast.show();
-                break;
-            default:
-                break;
+
+        private void jatek () {
+            if (valasztas == 1 && rand == 3) {
+                gepEletvesztes();
+            } else if (valasztas == 1 && rand == 2) {
+                jatekosEletvesztes();
+            } else if (valasztas == 2 && rand == 1) {
+                gepEletvesztes();
+            } else if (valasztas == 2 && rand == 3) {
+                jatekosEletvesztes();
+            } else if (valasztas == 3 && rand == 1) {
+                jatekosEletvesztes();
+            } else if (valasztas == 3 && rand == 2) {
+                gepEletvesztes();
+            } else if (valasztas == 1 && rand == 1) {
+                dontetlenPont++;
+                dontetlen.setText("döntetlenek:" + dontetlenPont);
+            } else if (valasztas == 2 && rand == 2) {
+                dontetlenPont++;
+                dontetlen.setText("döntetlenek:" + dontetlenPont);
+            } else if (valasztas == 3 && rand == 3) {
+                dontetlenPont++;
+                dontetlen.setText("döntetlenek:" + dontetlenPont);
+            }
         }
-    }
-    private void gepEletvesztes ()
+        private void jatekosEletvesztes() {
+            switch (maxJatekosHp) {
+                case 3:
+                    jatekos_hp3.setImageResource(R.drawable.heart1);
+                    maxJatekosHp--;
+                    vesztett_toast.show();
+                    break;
+                case 2:
+                    jatekos_hp2.setImageResource(R.drawable.heart1);
+                    maxJatekosHp--;
+                    vesztett_toast.show();
+                    break;
+                case 1:
+                    jatekos_hp1.setImageResource(R.drawable.heart1);
+                    maxJatekosHp--;
+                    alertDialog.show();
+                    vesztett_toast.show();
+                    break;
+                default:
+                    break;
+            }
+        }
+        private void gepEletvesztes ()
         {
             switch (maxGepHp) {
                 case 3:
@@ -116,38 +143,13 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
         }
-        private void jatek () {
-            if (valasztas == 1 && rand == 3) {
-                gepEletvesztes();
-            } else if (valasztas == 1 && rand == 2) {
-                jatekosEletvesztes();
-            } else if (valasztas == 2 && rand == 1) {
-                gepEletvesztes();
-            } else if (valasztas == 2 && rand == 3) {
-                jatekosEletvesztes();
-            } else if (valasztas == 3 && rand == 1) {
-                jatekosEletvesztes();
-            } else if (valasztas == 3 && rand == 2) {
-                gepEletvesztes();
-            } else if (valasztas == 1 && rand == 1) {
-                dontetlenPont++;
-                dontetlen.setText("döntetlenek" + dontetlenPont);
-            } else if (valasztas == 2 && rand == 2) {
-                dontetlenPont++;
-                dontetlen.setText("döntetlenek" + dontetlenPont);
-            } else if (valasztas == 3 && rand == 3) {
-                dontetlenPont++;
-                dontetlen.setText("döntetlenek:" + dontetlenPont);
-            }
-        }
-
         private void init()
         {
             sajatValasztas = findViewById(R.id.sajat);
             gepValasztas = findViewById(R.id.alap);
-            buttonKo = findViewById(R.id.ko);
-            buttonOllo = findViewById(R.id.ollo);
-            buttonPapir = findViewById(R.id.papir);
+            koButton = findViewById(R.id.ko);
+            olloButton = findViewById(R.id.ollo);
+            papirButton = findViewById(R.id.papir);
             dontetlen = findViewById(R.id.dontetlen);
             random = new Random();
             valasztas = 0;
@@ -177,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             builder = new AlertDialog.Builder(MainActivity.this);
-            builder.setMessage("Akarsz mé egyet játszani?");
+            builder.setMessage("Akarsz mégegyet játszani?");
             builder.setPositiveButton("Igen", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
